@@ -1,0 +1,10 @@
+[package]
+name = "basic-td"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bevy = { version = "0.17.2", features = ["bevy_dev_tools"] }
+bevy_enhanced_input = "0.19.1"
+bevy_rand = { version = "0.12.0", features = ["wyrand"] }
+rand_core = "0.9.3"
