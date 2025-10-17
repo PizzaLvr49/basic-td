@@ -1,6 +1,7 @@
 mod camera;
 mod enemy;
 mod grid;
+mod tower;
 
 use bevy::dev_tools::fps_overlay::{FpsOverlayConfig, FpsOverlayPlugin, FrameTimeGraphConfig};
 use bevy::prelude::*;
@@ -9,6 +10,7 @@ use bevy_rand::prelude::*;
 use camera::CameraPlugin;
 use enemy::EnemyPlugin;
 use grid::GridPlugin;
+use tower::TowerPlugin;
 
 fn main() {
     App::new()
@@ -39,5 +41,6 @@ fn main() {
         .add_plugins(GridPlugin)
         .add_plugins(CameraPlugin)
         .add_plugins(EnemyPlugin)
+        .add_plugins(TowerPlugin)
         .run();
 }

@@ -1,6 +1,5 @@
 use bevy::prelude::*;
 
-#[derive(Default)]
 pub struct CameraPlugin;
 
 impl Plugin for CameraPlugin {
@@ -10,5 +9,5 @@ impl Plugin for CameraPlugin {
 }
 
 fn setup(mut commands: Commands) {
-    commands.spawn(Camera2d);
+    commands.spawn((Camera2d, Msaa::Sample8));
 }

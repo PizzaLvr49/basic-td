@@ -4,14 +4,14 @@ use crate::grid::{Grid, Lane};
 
 #[derive(Component, Debug)]
 #[require(Sprite, Transform, Lane)]
-struct EnemyConfig {
+struct Enemy {
     health: f32,
     speed: f32,
 }
 
 #[derive(Bundle)]
 struct EnemyBundle {
-    enemy: EnemyConfig,
+    enemy: Enemy,
     sprite: Sprite,
     transform: Transform,
     lane: Lane,
@@ -29,20 +29,19 @@ impl Plugin for EnemyPlugin {
 fn enemy_setup(mut commands: Commands, grid: Res<Grid>) {
     for lane in 0..grid.height {
         commands.spawn(EnemyBundle {
-            enemy: EnemyConfig {
+            enemy: Enemy {
                 health: 100.0,
                 speed: 10.0,
             },
-            sprite: Sprite::default(),
-            transform: Transform::from_xyz(100.0, ((100 * lane) - 500) as f32, 0.0), // idk where to put the zombies for now
+            sprite: Sprite::from_color(Color::linear_rgb(1.0, 0.0, 0.0), Vec2::splat(100.0)),
+            transform: Transform::from_xyz(500.0, 150.0 * lane as f32 - 375.0, 0.0), // TODO
             lane: Lane(lane),
         });
     }
 }
 
-fn enemy_system(mut enemy_query: Query<(&mut Transform, &EnemyConfig)>, time: Res<Time>) {
+fn enemy_system(mut enemy_query: Query<(&mut Transform, &Enemy)>, time: Res<Time>) {
     for (mut transform, enemy) in enemy_query.iter_mut() {
         transform.translation.x -= enemy.speed * time.delta_secs();
-        info!("{:?}", enemy);
     }
 }

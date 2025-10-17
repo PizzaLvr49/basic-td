@@ -95,7 +95,6 @@ impl Grid {
     }
 }
 
-#[derive(Default)]
 pub struct GridPlugin;
 
 impl Plugin for GridPlugin {
